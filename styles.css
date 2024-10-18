@@ -1,0 +1,65 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+header {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.navbar-nav .nav-link {
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffd700;
+}
+
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+footer a {
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ffd700;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode header {
+  background: linear-gradient(135deg, #232526, #414345);
+}
+
+.dark-mode .navbar {
+  background-color: #1f1f1f;
+}
+
+.dark-mode .card {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+
+.dark-mode footer {
+  background-color: #1f1f1f;
+}
+
+/* Search Bar Styles */
+form {
+  margin-bottom: 2rem;
+}
