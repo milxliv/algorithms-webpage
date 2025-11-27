@@ -2,471 +2,275 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Essential Algorithms for Programmers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Neon Algorithm Explorer</title>
 
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  >
-  <!-- Font Awesome for Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  >
-  <!-- Custom CSS -->
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true });</script>
+
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-  <!-- Header -->
-  <header class="bg-primary text-white text-center py-4">
-    <h1>Essential Algorithms for Programmers</h1>
-    <p>Master the algorithms every developer should know</p>
+
+  <!-- HEADER -->
+  <header class="text-center">
+    <h1>Cyber Neon Algorithm Explorer</h1>
+    <p>Interactive Visualizations • Learn More Diagrams • Fully Expandable Library</p>
   </header>
 
-  <!-- Navigation Menu -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Algorithms</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#sorting">Sorting</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#searching">Searching</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#graph">Graph Algorithms</a>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-secondary" id="darkModeToggle">
-              <i class="fas fa-moon"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark bg-dark sticky-top px-3">
+    <button class="btn btn-secondary" id="darkModeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
   </nav>
 
-  <!-- Main Content -->
+  <!-- MAIN CONTENT -->
   <div class="container my-5">
-    <!-- Category Tabs -->
-    <ul class="nav nav-tabs" id="algorithmTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link active"
-          id="sorting-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#sorting"
-          type="button"
-          role="tab"
-          aria-controls="sorting"
-          aria-selected="true"
-        >
-          <i class="fas fa-sort"></i> Sorting
-        </button>
+
+    <!-- TABS -->
+    <ul class="nav nav-tabs mb-4" id="algorithmTabs">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#sorting">Sorting</button>
       </li>
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="searching-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#searching"
-          type="button"
-          role="tab"
-          aria-controls="searching"
-          aria-selected="false"
-        >
-          <i class="fas fa-search"></i> Searching
-        </button>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#searching">Searching</button>
       </li>
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="graph-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#graph"
-          type="button"
-          role="tab"
-          aria-controls="graph"
-          aria-selected="false"
-        >
-          <i class="fas fa-project-diagram"></i> Graph
-        </button>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#graphs">Graph Algorithms</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#strings">String Algorithms</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#trees">Trees & Structures</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dynamic">Dynamic Programming</button>
       </li>
     </ul>
 
-    <!-- Search bar gets mounted here by script.js -->
-    <div id="search-bar-container" class="mt-3 mb-4"></div>
+    <!-- TAB CONTENT -->
+    <div class="tab-content">
 
-    <!-- Tab Panes -->
-    <div class="tab-content" id="algorithmTabsContent">
-      <!-- Sorting Algorithms -->
-      <div
-        class="tab-pane fade show active"
-        id="sorting"
-        role="tabpanel"
-        aria-labelledby="sorting-tab"
-      >
-        <h2 class="mb-4"><i class="fas fa-sort"></i> Sorting Algorithms</h2>
+      <!-- ========================= SORTING ========================= -->
+      <div class="tab-pane fade show active" id="sorting">
+        <h2 class="mb-4">Sorting Algorithms</h2>
         <div class="row">
-          <!-- Quick Sort -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Quick Sort</h5>
-                <p class="card-text">
-                  A divide-and-conquer algorithm that selects a pivot and partitions the array.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Quick Sort')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
 
-          <!-- Merge Sort -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Merge Sort</h5>
-                <p class="card-text">
-                  Divides the list into halves, recursively sorts them, and merges the sorted halves.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Merge Sort')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+          <!-- Sorting List (ALL algorithms) -->
+          <script>
+            const sortingList = [
+              "Bubble Sort",
+              "Quick Sort",
+              "Merge Sort",
+              "Insertion Sort",
+              "Selection Sort",
+              "Heap Sort",
+              "Counting Sort",
+              "Radix Sort",
+              "Bucket Sort",
+              "Shell Sort",
+              "TimSort",
+              "IntroSort"
+            ];
+          </script>
 
-          <!-- Bubble Sort -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Bubble Sort</h5>
-                <p class="card-text">
-                  Repeatedly swaps adjacent elements that are in the wrong order.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Bubble Sort')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+          <!-- Sorting Cards -->
+          <div id="sortingCards" class="row"></div>
 
-          <!-- Insertion Sort -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Insertion Sort</h5>
-                <p class="card-text">
-                  Builds a sorted portion of the array one element at a time.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Insertion Sort')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Selection Sort -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Selection Sort</h5>
-                <p class="card-text">
-                  Repeatedly selects the minimum element and moves it to the front.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Selection Sort')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Heap Sort -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Heap Sort</h5>
-                <p class="card-text">
-                  Uses a binary heap to repeatedly extract the maximum and sort in place.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Heap Sort')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
-      <!-- Searching Algorithms -->
-      <div
-        class="tab-pane fade"
-        id="searching"
-        role="tabpanel"
-        aria-labelledby="searching-tab"
-      >
-        <h2 class="mb-4"><i class="fas fa-search"></i> Searching Algorithms</h2>
-        <div class="row">
-          <!-- Binary Search -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Binary Search</h5>
-                <p class="card-text">
-                  Efficiently searches a sorted array by repeatedly dividing the search interval in half.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Binary Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+      <!-- ========================= SEARCHING ========================= -->
+      <div class="tab-pane fade" id="searching">
+        <h2 class="mb-4">Searching Algorithms</h2>
+        
+        <script>
+          const searchingList = [
+            "Linear Search",
+            "Binary Search",
+            "Interpolation Search",
+            "Exponential Search",
+            "Jump Search",
+            "Fibonacci Search"
+          ];
+        </script>
 
-          <!-- Linear Search -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Linear Search</h5>
-                <p class="card-text">
-                  Sequentially checks each element until the target is found or the list ends.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Linear Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+        <div id="searchingCards" class="row"></div>
 
-          <!-- Interpolation Search -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Interpolation Search</h5>
-                <p class="card-text">
-                  Uses the value of the key to estimate its position in a uniformly distributed array.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Interpolation Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Exponential Search -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Exponential Search</h5>
-                <p class="card-text">
-                  Quickly finds a range for binary search by checking positions 1, 2, 4, 8, and so on.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Exponential Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- Graph Algorithms -->
-      <div
-        class="tab-pane fade"
-        id="graph"
-        role="tabpanel"
-        aria-labelledby="graph-tab"
-      >
-        <h2 class="mb-4"><i class="fas fa-project-diagram"></i> Graph Algorithms</h2>
-        <div class="row">
-          <!-- Dijkstra's Algorithm -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Dijkstra's Algorithm</h5>
-                <p class="card-text">
-                  Computes shortest paths from a single source in a graph with non-negative edge weights.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal(`Dijkstra's Algorithm`)"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+      <!-- ========================= GRAPHS ========================= -->
+      <div class="tab-pane fade" id="graphs">
+        <h2 class="mb-4">Graph Algorithms</h2>
 
-          <!-- BFS -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Breadth-First Search (BFS)</h5>
-                <p class="card-text">
-                  Explores all neighbors at the current depth before moving to the next level.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Breadth-First Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+        <script>
+          const graphList = [
+            "Breadth-First Search",
+            "Depth-First Search",
+            "Dijkstra",
+            "Bellman-Ford",
+            "Floyd-Warshall",
+            "Prim’s Algorithm",
+            "Kruskal’s Algorithm",
+            "Topological Sort",
+            "A* Search",
+            "Greedy Best-First Search",
+            "Jump Point Search",
+            "Bidirectional A*"
+          ];
+        </script>
 
-          <!-- DFS -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">Depth-First Search (DFS)</h5>
-                <p class="card-text">
-                  Explores as far as possible along each branch before backtracking.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('Depth-First Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
+        <div id="graphCards" class="row"></div>
 
-          <!-- A* Search -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm algorithm-card">
-              <div class="card-body">
-                <h5 class="card-title">A* Search</h5>
-                <p class="card-text">
-                  Uses a heuristic to guide the search toward the goal efficiently.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#algorithmModal"
-                  onclick="openModal('A* Search')"
-                >Learn More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> <!-- end graph tab -->
-    </div> <!-- end tab-content -->
-  </div> <!-- end container -->
+      </div>
 
-  <!-- Algorithm Details Modal -->
-  <div
-    class="modal fade"
-    id="algorithmModal"
-    tabindex="-1"
-    aria-labelledby="algorithmModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-lg">
+      <!-- ========================= STRINGS ========================= -->
+      <div class="tab-pane fade" id="strings">
+        <h2 class="mb-4">String Algorithms</h2>
+
+        <script>
+          const stringList = [
+            "KMP Search",
+            "Rabin-Karp",
+            "Z-Algorithm",
+            "Boyer-Moore"
+          ];
+        </script>
+
+        <div id="stringCards" class="row"></div>
+
+      </div>
+
+      <!-- ========================= TREES & STRUCTURES ========================= -->
+      <div class="tab-pane fade" id="trees">
+        <h2 class="mb-4">Tree & Data Structure Algorithms</h2>
+
+        <script>
+          const treeList = [
+            "AVL Tree Insert",
+            "AVL Tree Search",
+            "Red-Black Tree Insert",
+            "Red-Black Tree Search",
+            "Inorder Traversal",
+            "Preorder Traversal",
+            "Postorder Traversal",
+            "Segment Tree Query"
+          ];
+        </script>
+
+        <div id="treeCards" class="row"></div>
+
+      </div>
+
+      <!-- ========================= DYNAMIC PROGRAMMING ========================= -->
+      <div class="tab-pane fade" id="dynamic">
+        <h2 class="mb-4">Dynamic Programming Algorithms</h2>
+
+        <script>
+          const dynamicList = [
+            "Longest Increasing Subsequence",
+            "Longest Common Subsequence",
+            "Edit Distance",
+            "0/1 Knapsack"
+          ];
+        </script>
+
+        <div id="dynamicCards" class="row"></div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================= MODAL (VISUALIZE + LEARN MORE) ========================= -->
+  <div class="modal fade" id="algorithmModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
+
         <div class="modal-header">
-          <h5 class="modal-title" id="algorithmModalLabel">Algorithm Details</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <h5 class="modal-title" id="algorithmModalLabel">Algorithm</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
+
         <div class="modal-body">
-          <p id="algorithmDescription">Description goes here...</p>
-          <!-- Later we can add Mermaid diagrams + run-example UI here -->
+
+          <div id="algorithmDescription"></div>
+          <hr>
+
+          <!-- VISUALIZER CONTROLS -->
+          <div id="visualizerControls" class="mb-3" style="display:none;">
+            <button id="vizPrev" class="btn btn-outline-secondary btn-sm">⏮ Prev</button>
+            <button id="vizPlay" class="btn btn-outline-primary btn-sm">▶ Play</button>
+            <button id="vizNext" class="btn btn-outline-secondary btn-sm">⏭ Next</button>
+            <button id="vizReset" class="btn btn-outline-danger btn-sm">🔁 Reset</button>
+
+            <label class="ms-3">Speed:</label>
+            <input id="vizSpeed" type="range" min="0.2" max="3" step="0.1" value="1" style="width:150px;">
+          </div>
+
+          <!-- SVG VISUALIZER -->
+          <div id="visualizerContainer" class="border p-3 rounded bg-light" style="height:300px;"></div>
+
         </div>
+
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >Close</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-4">
-    <p>&copy; 2024 Your Name. All rights reserved.</p>
-    <div>
-      <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap + Script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Mermaid JS (for diagrams later) -->
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({ startOnLoad: true });
-  </script>
-  <!-- Custom JS -->
   <script src="script.js"></script>
+
+  <!-- CARD GENERATION SCRIPT -->
+  <script>
+    const categories = [
+      {list: sortingList, target: "sortingCards"},
+      {list: searchingList, target: "searchingCards"},
+      {list: graphList, target: "graphCards"},
+      {list: stringList, target: "stringCards"},
+      {list: treeList, target: "treeCards"},
+      {list: dynamicList, target: "dynamicCards"}
+    ];
+
+    categories.forEach(cat => {
+      const container = document.getElementById(cat.target);
+      cat.list.forEach(name => {
+        container.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="card algorithm-card h-100 p-3">
+              <h5>${name}</h5>
+              <div class="mt-auto">
+                <button class="btn btn-primary me-2" data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal" onclick="openModal('${name}')">
+                  Visualize
+                </button>
+
+                <button class="btn btn-outline-info" data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal" onclick="learnMore('${name}')">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    });
+  </script>
+
 </body>
 </html>
