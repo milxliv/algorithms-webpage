@@ -1,59 +1,152 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Create and Insert Search Bar
+  // -------------------------------
+  // 1. Create and Insert Search Bar
+  // -------------------------------
   const searchInput = document.createElement('input');
-  searchInput.setAttribute('type', 'text');
-  searchInput.setAttribute('placeholder', 'Search algorithms...');
+  searchInput.type = 'text';
+  searchInput.placeholder = 'Search algorithms...';
   searchInput.classList.add('form-control', 'mb-4');
-  
-  // Insert the search bar above the first section
+
+  // Insert the search bar above the first <section>
   const firstSection = document.querySelector('section');
-  firstSection.parentNode.insertBefore(searchInput, firstSection);
-  
-  // Search Functionality
-  searchInput.addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    
-    cards.forEach(card => {
-      const title = card.querySelector('.card-title').innerText.toLowerCase();
-      const description = card.querySelector('.card-text').innerText.toLowerCase();
-      
-      if (title.includes(query) || description.includes(query)) {
-        card.parentElement.style.display = 'block';
+  if (firstSection && firstSection.parentNode) {
+    firstSection.parentNode.insertBefore(searchInput, firstSection);
+  }
+
+  // Cache all cards for search
+  const cards = Array.from(document.querySelectorAll('.card'));
+
+  // ----------------------
+  // 2. Search Functionality
+  // ----------------------
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+
+    cards.forEach((card) => {
+      const text = card.innerText.toLowerCase();
+      const col = card.closest('.col-md-4') || card.parentElement;
+
+      if (!col) return;
+
+      if (!query || text.includes(query)) {
+        col.style.display = '';
       } else {
-        card.parentElement.style.display = 'none';
+        col.style.display = 'none';
       }
     });
   });
-});
 
-// Algorithm Details
-const algorithms = {
-  'Quick Sort': 'Quick Sort is a divide-and-conquer algorithm that selects a pivot element and partitions the array around the pivot. It recursively sorts the subarrays.',
-  'Merge Sort': 'Merge Sort is a stable, divide-and-conquer algorithm that divides the array into halves, recursively sorts them, and then merges the sorted halves.',
-  'Binary Search': 'Binary Search efficiently finds the position of a target value within a sorted array by repeatedly dividing the search interval in half.',
-  'Linear Search': 'Linear Search sequentially checks each element of the list until the desired element is found or the list ends.',
-  'Dijkstra\'s Algorithm': 'Dijkstra\'s Algorithm finds the shortest path from a single source node to all other nodes in a weighted graph with non-negative edge weights.',
-  'Breadth-First Search': 'Breadth-First Search explores all neighbors at the current depth before moving to nodes at the next depth level.',
-  // Add more algorithms and their descriptions here
-};
+  // -----------------------------------------
+  // 3. Algorithm descriptions for the modal
+  // -----------------------------------------
+  const algorithms = {
+    'Quick Sort': `
+Quick sort is a divide-and-conquer sorting algorithm:
 
-// Function to Open Modal with Algorithm Details
-function openModal(algorithmName) {
-  const modalTitle = document.getElementById('algorithmModalLabel');
-  const modalDescription = document.getElementById('algorithmDescription');
-  
-  modalTitle.innerText = algorithmName;
-  modalDescription.innerText = algorithms[algorithmName] || 'Description not available.';
-}
+• Pick a pivot element.
+• Partition the array into elements less than, equal to, and greater than the pivot.
+• Recursively sort the subarrays.
+• Combine the results.
 
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
+Average: O(n log n)
+Worst-case: O(n²)
+Space: O(log n)
+    `.trim(),
 
-darkModeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  darkModeToggle.innerHTML = body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    'Merge Sort': `
+Merge sort is a stable, divide-and-conquer sorting algorithm:
+
+• Split the list into two halves.
+• Recursively sort each half.
+• Merge them back together.
+
+Time: O(n log n)
+Space: O(n)
+    `.trim(),
+
+    'Binary Search': `
+Binary search finds an element in a sorted array:
+
+• Start with low and high indexes.
+• Check mid.
+• Narrow left or right depending on comparison.
+
+Time: O(log n)
+Requires sorted data.
+    `.trim(),
+
+    'Linear Search': `
+Linear search checks items one by one:
+
+• Start at index 0.
+• Compare each item.
+• Return index if match found.
+
+Time: O(n)
+Works on unsorted lists.
+    `.trim(),
+
+    "Dijkstra's Algorithm": `
+Finds the shortest path from a source node in a weighted graph:
+
+• Use a priority queue.
+• Repeatedly pick the smallest-distance node.
+• Relax edges.
+
+Time: O((V + E) log V)
+    `.trim(),
+
+    'Breadth-First Search': `
+BFS explores a graph level by level using a queue:
+
+• Mark start node visited.
+• Visit neighbors.
+• Continue until queue empty.
+
+Time: O(V + E)
+Ideal for shortest paths in unweighted graphs.
+    `.trim()
+  };
+
+  // -----------------------------------------
+  // 4. Modal helper (GLOBAL for HTML buttons)
+  // -----------------------------------------
+  window.openModal = function (algorithmName) {
+    const modalTitle = document.getElementById('algorithmModalLabel');
+    const modalDescription = document.getElementById('algorithmDescription');
+
+    if (!modalTitle || !modalDescription) return;
+
+    modalTitle.innerText = algorithmName;
+    modalDescription.innerText =
+      algorithms[algorithmName] || 'Description not available yet.';
+  };
+
+  // -------------------------
+  // 5. Dark Mode Toggle Logic
+  // -------------------------
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+
+  if (darkModeToggle) {
+    // Load saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+
+      darkModeToggle.innerHTML = isDark
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
+
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
 });
