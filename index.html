@@ -4,10 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Essential Algorithms for Programmers</title>
+
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
   <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,13 +29,19 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Algorithms</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <!-- Navigation items -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#sorting">Sorting</a>
           </li>
@@ -39,7 +52,9 @@
             <a class="nav-link" href="#graph">Graph Algorithms</a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-secondary" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+            <button class="btn btn-secondary" id="darkModeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
           </li>
         </ul>
       </div>
@@ -48,109 +63,387 @@
 
   <!-- Main Content -->
   <div class="container my-5">
-    <!-- Search Bar (Inserted via JavaScript) -->
+    <!-- Category Tabs -->
+    <ul class="nav nav-tabs" id="algorithmTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="sorting-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#sorting"
+          type="button"
+          role="tab"
+          aria-controls="sorting"
+          aria-selected="true"
+        >
+          <i class="fas fa-sort"></i> Sorting
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="searching-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#searching"
+          type="button"
+          role="tab"
+          aria-controls="searching"
+          aria-selected="false"
+        >
+          <i class="fas fa-search"></i> Searching
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="graph-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#graph"
+          type="button"
+          role="tab"
+          aria-controls="graph"
+          aria-selected="false"
+        >
+          <i class="fas fa-project-diagram"></i> Graph
+        </button>
+      </li>
+    </ul>
 
-    <!-- Sorting Algorithms -->
-    <section id="sorting">
-      <h2 class="mb-4"><i class="fas fa-sort"></i> Sorting Algorithms</h2>
-      <div class="row">
-        <!-- Quick Sort Card -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Quick Sort</h5>
-              <p class="card-text">A divide-and-conquer algorithm that selects a pivot and partitions the array.</p>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#algorithmModal" onclick="openModal('Quick Sort')">Learn More</a>
+    <!-- Search bar gets mounted here by script.js -->
+    <div id="search-bar-container" class="mt-3 mb-4"></div>
+
+    <!-- Tab Panes -->
+    <div class="tab-content" id="algorithmTabsContent">
+      <!-- Sorting Algorithms -->
+      <div
+        class="tab-pane fade show active"
+        id="sorting"
+        role="tabpanel"
+        aria-labelledby="sorting-tab"
+      >
+        <h2 class="mb-4"><i class="fas fa-sort"></i> Sorting Algorithms</h2>
+        <div class="row">
+          <!-- Quick Sort -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Quick Sort</h5>
+                <p class="card-text">
+                  A divide-and-conquer algorithm that selects a pivot and partitions the array.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Quick Sort')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Merge Sort -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Merge Sort</h5>
+                <p class="card-text">
+                  Divides the list into halves, recursively sorts them, and merges the sorted halves.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Merge Sort')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bubble Sort -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Bubble Sort</h5>
+                <p class="card-text">
+                  Repeatedly swaps adjacent elements that are in the wrong order.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Bubble Sort')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Insertion Sort -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Insertion Sort</h5>
+                <p class="card-text">
+                  Builds a sorted portion of the array one element at a time.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Insertion Sort')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selection Sort -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Selection Sort</h5>
+                <p class="card-text">
+                  Repeatedly selects the minimum element and moves it to the front.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Selection Sort')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heap Sort -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Heap Sort</h5>
+                <p class="card-text">
+                  Uses a binary heap to repeatedly extract the maximum and sort in place.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Heap Sort')"
+                >Learn More</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Merge Sort Card -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Merge Sort</h5>
-              <p class="card-text">Divides the list into halves, recursively sorts them, and merges the sorted halves.</p>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#algorithmModal" onclick="openModal('Merge Sort')">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <!-- Add more sorting algorithms as needed -->
       </div>
-    </section>
 
-    <!-- Searching Algorithms -->
-    <section id="searching" class="mt-5">
-      <h2 class="mb-4"><i class="fas fa-search"></i> Searching Algorithms</h2>
-      <div class="row">
-        <!-- Binary Search Card -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Binary Search</h5>
-              <p class="card-text">Efficiently searches a sorted array by repeatedly dividing the search interval in half.</p>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#algorithmModal" onclick="openModal('Binary Search')">Learn More</a>
+      <!-- Searching Algorithms -->
+      <div
+        class="tab-pane fade"
+        id="searching"
+        role="tabpanel"
+        aria-labelledby="searching-tab"
+      >
+        <h2 class="mb-4"><i class="fas fa-search"></i> Searching Algorithms</h2>
+        <div class="row">
+          <!-- Binary Search -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Binary Search</h5>
+                <p class="card-text">
+                  Efficiently searches a sorted array by repeatedly dividing the search interval in half.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Binary Search')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linear Search -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Linear Search</h5>
+                <p class="card-text">
+                  Sequentially checks each element until the target is found or the list ends.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Linear Search')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interpolation Search -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Interpolation Search</h5>
+                <p class="card-text">
+                  Uses the value of the key to estimate its position in a uniformly distributed array.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Interpolation Search')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exponential Search -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Exponential Search</h5>
+                <p class="card-text">
+                  Quickly finds a range for binary search by checking positions 1, 2, 4, 8, and so on.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Exponential Search')"
+                >Learn More</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Linear Search Card -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Linear Search</h5>
-              <p class="card-text">Sequentially checks each element until the desired element is found or the list ends.</p>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#algorithmModal" onclick="openModal('Linear Search')">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <!-- Add more searching algorithms as needed -->
       </div>
-    </section>
 
-    <!-- Graph Algorithms -->
-    <section id="graph" class="mt-5">
-      <h2 class="mb-4"><i class="fas fa-network-wired"></i> Graph Algorithms</h2>
-      <div class="row">
-        <!-- Dijkstra's Algorithm Card -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Dijkstra's Algorithm</h5>
-              <p class="card-text">Finds the shortest path from a single source to all other vertices in a weighted graph.</p>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#algorithmModal" onclick="openModal('Dijkstra\'s Algorithm')">Learn More</a>
+      <!-- Graph Algorithms -->
+      <div
+        class="tab-pane fade"
+        id="graph"
+        role="tabpanel"
+        aria-labelledby="graph-tab"
+      >
+        <h2 class="mb-4"><i class="fas fa-project-diagram"></i> Graph Algorithms</h2>
+        <div class="row">
+          <!-- Dijkstra's Algorithm -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Dijkstra's Algorithm</h5>
+                <p class="card-text">
+                  Computes shortest paths from a single source in a graph with non-negative edge weights.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal(`Dijkstra's Algorithm`)"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- BFS -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Breadth-First Search (BFS)</h5>
+                <p class="card-text">
+                  Explores all neighbors at the current depth before moving to the next level.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Breadth-First Search')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- DFS -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">Depth-First Search (DFS)</h5>
+                <p class="card-text">
+                  Explores as far as possible along each branch before backtracking.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('Depth-First Search')"
+                >Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- A* Search -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm algorithm-card">
+              <div class="card-body">
+                <h5 class="card-title">A* Search</h5>
+                <p class="card-text">
+                  Uses a heuristic to guide the search toward the goal efficiently.
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#algorithmModal"
+                  onclick="openModal('A* Search')"
+                >Learn More</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- BFS Card -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Breadth-First Search (BFS)</h5>
-              <p class="card-text">Explores all neighbors at the current depth before moving to the next level.</p>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#algorithmModal" onclick="openModal('Breadth-First Search')">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <!-- Add more graph algorithms as needed -->
-      </div>
-    </section>
+      </div> <!-- end graph tab -->
+    </div> <!-- end tab-content -->
+  </div> <!-- end container -->
 
-    <!-- Add more sections for other categories -->
-  </div>
-
-  <!-- Modal for Algorithm Details -->
-  <div class="modal fade" id="algorithmModal" tabindex="-1" aria-labelledby="algorithmModalLabel" aria-hidden="true">
+  <!-- Algorithm Details Modal -->
+  <div
+    class="modal fade"
+    id="algorithmModal"
+    tabindex="-1"
+    aria-labelledby="algorithmModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="algorithmModalLabel">Algorithm Name</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="algorithmModalLabel">Algorithm Details</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <p id="algorithmDescription">Description goes here...</p>
-          <!-- Optional: Add pseudocode, diagrams, or links to external resources -->
+          <!-- Later we can add Mermaid diagrams + run-example UI here -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >Close</button>
         </div>
       </div>
     </div>
@@ -163,13 +456,12 @@
       <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
       <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
       <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in"></i></a>
-      <!-- Add more social icons as needed -->
     </div>
   </footer>
 
-  <!-- Bootstrap JS and dependencies -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Mermaid JS for Diagrams (Optional) -->
+  <!-- Mermaid JS (for diagrams later) -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({ startOnLoad: true });
